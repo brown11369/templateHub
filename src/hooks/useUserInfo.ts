@@ -27,7 +27,7 @@ const useUserInfo = () => {
                 // Handle login failure (e.g., show an error message)
                 console.error("Error token expired", res.statusText);
                 if (res.status === 401 && res.statusText === "Unauthorized") {
-                    handleRefresh(() => handleGetUserInfo(apiUrl));
+                    handleRefresh(handleGetUserInfo);
                 }
             }
         } catch (error) {
