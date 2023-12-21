@@ -1,0 +1,16 @@
+.dashpage {
+    text-align: center;
+}
+
+.logout-btn {
+    background-color: #5555fe;
+    color: var(--txt_1);
+    padding: 10px 20px;
+    border: none;
+    height: 2.5em;
+    font-size: 1em;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    text-transform: capitalize;
+    border-radius: 8px;
+}

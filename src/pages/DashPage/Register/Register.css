@@ -27,12 +27,16 @@ form .inputbx input,
 form .inputbx label {
     position: absolute;
 }
+
+form .inputbx .username,
 form .inputbx .email,
 form .inputbx .password {
     /***This is input container***/
     position: relative;
     width: 100%;
 }
+
+form .inputbx .username label,
 form .inputbx .email label,
 form .inputbx .password label {
     width: fit-content;

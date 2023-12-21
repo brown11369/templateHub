@@ -1,0 +1,24 @@
+.toast {
+    width: fit-content;
+    padding: 20px 40px;
+    background-color: aqua;
+    position: fixed;
+    bottom: 10px;
+    right: -100%;
+    transition: 0.5s ease-in;
+    text-transform: capitalize;
+}
+
+.toast::before {
+    content: "";
+    position: absolute;
+    left: -10px;
+    top: 0;
+    width: 10px;
+    height: 100%;
+    background-color: red;
+}
+
+.active {
+    right: 20px;
+}

@@ -1,7 +1,7 @@
-import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
-import { RootState } from "../../store/rootReducer";
 import { ReactNode } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/rootReducer";
 
 const ProtectPrivate: React.FC<{ children: ReactNode }> = ({ children }) => {
     const isAuthenticated = useSelector(

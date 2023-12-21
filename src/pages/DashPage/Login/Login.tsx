@@ -1,23 +1,19 @@
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import "./Login.css";
-import { useDispatch, useSelector } from "react-redux";
-import { setAuthenticated } from "../../store/authSlice";
-import { RootState } from "../../store/rootReducer";
+import useLogin from "../../../hooks/useLogin";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../store/rootReducer";
+import { apiUrl } from "../../../lib/constant";
 
 const Login = () => {
+    const { email, password, setEmail, setPassword, handleLogin } =
+        useLogin(apiUrl);
+
     const isAuthenticated = useSelector(
         (state: RootState) => state.auth.isAuthenticated
     );
 
-    const navigate = useNavigate();
     if (isAuthenticated) return <Navigate to={"/dashboard"} />;
-
-    const dispatch = useDispatch();
-    const handleLogin = (e: any) => {
-        e.preventDefault();
-        dispatch(setAuthenticated(true));
-        navigate("/dashboard");
-    };
 
     return (
         <form id="sign_in">
@@ -30,18 +26,30 @@ const Login = () => {
                         type="email"
                         autoComplete="true"
                         required
+                        onChange={(e) => setEmail(e.target.value)}
                     />
                     <label htmlFor="email">Enter email</label>
                 </div>
                 <div className="password">
-                    <input id="password" type="password" required />
+                    <input
+                        id="password"
+                        type="password"
+                        required
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
                     <label htmlFor="password">Enter password</label>
                 </div>
             </div>
 
             {/* <!--Call to action container--> */}
             <div className="btnbx">
-                <button type="submit" onClick={handleLogin}>
+                <button
+                    type="submit"
+                    disabled={!email || !password}
+                    onClick={(e) => {
+                        e.preventDefault();
+                        handleLogin();
+                    }}>
                     Sign in
                 </button>
 

@@ -1,20 +1,27 @@
-import { useDispatch } from "react-redux";
-import { setAuthenticated } from "../../store/authSlice";
+import "./DashPage.css";
+import { apiUrl } from "../../lib/constant";
+import useLogout from "../../hooks/useLogout";
+import useUserInfo from "../../hooks/useUserInfo";
 
-const DashPage = () => {
-    const dispatch = useDispatch();
+const DashPage: React.FC = () => {
+    const { handleLogout } = useLogout(apiUrl);
 
-    const handleLogout = (e: any) => {
-        e.preventDefault();
-        dispatch(setAuthenticated(false));
-    };
+    const { loading, userInfo } = useUserInfo();
+
     return (
-        <>
-            <h1> Welcome to Dashboard page</h1>
-            <center>
-                <button onClick={handleLogout}>logout</button>
-            </center>
-        </>
+        <div className="dashpage">
+            <h1>Welcome to Dashboard page</h1>
+            {loading ? <p>Loading...</p> : userInfo && <p>{userInfo.name}</p>}
+
+            <button
+                className="logout-btn"
+                onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+                    e.preventDefault();
+                    handleLogout();
+                }}>
+                Logout
+            </button>
+        </div>
     );
 };
 

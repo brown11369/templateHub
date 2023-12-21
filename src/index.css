@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 
-:root {
+/* :root {
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     line-height: 1.5;
     font-weight: 400;
@@ -18,7 +18,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
-}
+} */
 
 :root {
     --bg_1: rgb(20, 20, 20);
@@ -28,11 +28,10 @@
     --fmbrd: rgba(200, 200, 200, 0.5);
 }
 body {
-    background-color: var(--bg_1);
     min-height: 100svh;
     align-items: center;
 }
-
+/* 
 a {
     font-weight: 500;
     color: #646cff;
@@ -69,7 +68,6 @@ button:focus-visible {
 @media (prefers-color-scheme: light) {
     :root {
         color: #213547;
-        background-color: #ffffff;
     }
     a:hover {
         color: #747bff;
@@ -77,4 +75,4 @@ button:focus-visible {
     button {
         background-color: #f9f9f9;
     }
-}
+} */

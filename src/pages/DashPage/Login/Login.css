@@ -103,3 +103,12 @@ form .btnbx p {
 form .btnbx p a {
     color: rgba(70, 70, 200, 0.65);
 }
+
+form .btnbx button:disabled {
+    background-color: gray;
+    cursor: no-drop;
+}
+form .btnbx button:disabled:hover {
+    background-color: gray;
+    cursor: no-drop;
+}
