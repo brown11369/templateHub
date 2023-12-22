@@ -23,12 +23,10 @@ const useUserInfo = () => {
 
             if (res.ok) {
                 const data = await res.json();
-                console.log(data);
                 setUserInfo(data.userInfo);
             } else {
                 // Handle login failure (e.g., show an error message)
-                console.error("Error token expired", res.statusText);
-                if (res.status === 401 && res.statusText === "Unauthorized") {
+                if (res.status === 401) {
                     handleRefresh(handleGetUserInfo);
                 }
             }
