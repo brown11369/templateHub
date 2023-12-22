@@ -19,6 +19,8 @@ const useUserInfo = () => {
                 credentials: "include",
             });
 
+            console.log(res);
+
             if (res.ok) {
                 const data = await res.json();
                 console.log(data);
@@ -40,7 +42,7 @@ const useUserInfo = () => {
 
     useEffect(() => {
         handleGetUserInfo(apiUrl).finally(() => setLoading(false));
-    }, [apiUrl]);
+    }, []);
 
     return { userInfo, loading };
 };
