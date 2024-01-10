@@ -25,7 +25,8 @@ const useLogin = (apiUrl: string) => {
             if (res.ok) {
                 const data = await res.json();
                 console.log(data);
-                dispatch(setAuthenticated(true));
+                const {userInfo}=data
+                dispatch(setAuthenticated({isAuthenticated:true,userInfo}));
                 handleToast(true, data.message);
                 navigate("/dashboard");
             } else {

@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import useRefresh from "./useRefresh";
-import { apiUrl } from "../lib/constant";
+import { apiUrl } from "../utils/constant";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setAuthenticated } from "../store/authSlice";
 
 interface UserInfo {
     name: string;
@@ -8,7 +11,10 @@ interface UserInfo {
 }
 
 const useUserInfo = () => {
+
+    const navigate = useNavigate()
     const { handleRefresh } = useRefresh(apiUrl);
+    const dispatch = useDispatch()
 
     const handleGetUserInfo = async (apiUrl: string) => {
         try {
@@ -32,6 +38,9 @@ const useUserInfo = () => {
             }
         } catch (error) {
             console.error("Error during getUserInfo:", error);
+            localStorage.clear()
+            dispatch(setAuthenticated({isAuthenticated:false,userInfo:{}}))
+           navigate('/dashboard/login')
         }
     };
 

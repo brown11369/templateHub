@@ -1,5 +1,5 @@
 import "./DashPage.css";
-import { apiUrl } from "../../lib/constant";
+import { apiUrl } from "../../utils/constant";
 import useLogout from "../../hooks/useLogout";
 import useUserInfo from "../../hooks/useUserInfo";
 

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useToast from "./useToast";
-import { apiUrl } from "../lib/constant";
+import { apiUrl } from "../utils/constant";
 
 const useRegister = () => {
     const [name, setName] = useState("");

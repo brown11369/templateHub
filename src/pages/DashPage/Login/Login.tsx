@@ -3,7 +3,7 @@ import "./Login.css";
 import useLogin from "../../../hooks/useLogin";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/rootReducer";
-import { apiUrl } from "../../../lib/constant";
+import { apiUrl } from "../../../utils/constant";
 
 const Login = () => {
     const { email, password, setEmail, setPassword, handleLogin } =
