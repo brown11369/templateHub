@@ -8,6 +8,7 @@ import Dashpage from "./pages/DashPage/DashPage";
 import ProtectPrivate from "./components/ProtectPrivate/ProtectPrivate";
 import Login from "./pages/DashPage/Login/Login";
 import Register from "./pages/DashPage/Register/Register";
+import CreateTemplate from "./pages/DashPage/CreateTemplate/CreateTemplate";
 
 const router = createBrowserRouter([
     {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
                     {
                         index: true,
                         element: <Dashpage />,
+                    },
+                    {
+                        path: "template/create",
+                        element: <CreateTemplate />,
                     },
                 ],
             },
