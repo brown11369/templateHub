@@ -1,4 +1,5 @@
-// pages/CreateTemplate.tsx
+import "./CreateTemplate.css"
+
 import React from "react";
 import useTemplateForm from "../../../hooks/useTemplateCreate";
 
@@ -6,8 +7,8 @@ const CreateTemplate: React.FC = () => {
     const { template, handleInputChange, addImage, handleSubmit } = useTemplateForm();
 
     return (
-        <main>
-            <section>
+        <section className="createTemplate">
+            <form>
                 <input
                     type="text"
                     placeholder="Enter Template Name"
@@ -20,31 +21,44 @@ const CreateTemplate: React.FC = () => {
                     onChange={handleInputChange}
                     name="main_image"
                 />
-                <div>
-                    <input
-                        type="checkbox"
-                        name="html"
-                        id="htmlCheckbox"
-                        value="HTML"
-                        onChange={handleInputChange}
-                    />
-                    <span>HTML</span>
-                    <input
-                        type="checkbox"
-                        name="css"
-                        id="cssCheckbox"
-                        value="CSS"
-                        onChange={handleInputChange}
-                    />
-                    <span>CSS</span>
-                    <input
-                        type="checkbox"
-                        name="js"
-                        id="jsCheckbox"
-                        value="JS"
-                        onChange={handleInputChange}
-                    />
-                    <span>JS</span>
+                <div className="stacks-checkbox">
+                    <div>
+
+                        <input
+                            type="checkbox"
+                            name="html"
+                            id="htmlCheckbox"
+                            value="HTML"
+                            onChange={handleInputChange}
+                        />
+                        &nbsp;
+                        <span>HTML</span>
+                    </div>
+                    <div>
+
+                        <input
+                            type="checkbox"
+                            name="css"
+                            id="cssCheckbox"
+                            value="CSS"
+                            onChange={handleInputChange}
+                        />
+                        &nbsp;
+                        <span>CSS</span>
+                    </div>
+                    <div>
+
+                        <input
+                            type="checkbox"
+                            name="js"
+                            id="jsCheckbox"
+                            value="JS"
+                            onChange={handleInputChange}
+                        />
+                        &nbsp;
+
+                        <span>JS</span>
+                    </div>
                 </div>
                 <input
                     type="text"
@@ -64,24 +78,29 @@ const CreateTemplate: React.FC = () => {
                 <div>
                     <h4>Added Extra Images:</h4>
                     <ul>
-                        {template.images.map((image, index) => (
-                            <li key={index}>{image}</li>
+                        {template.images.map((image) => (
+                            <li key={image}>{image}</li>
                         ))}
                     </ul>
                 </div>
 
                 <div>
-                    <input type="text" placeholder="Enter Extra Image URL" id="extraImageUrl" />
-                    <button onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
-                        e.preventDefault();
-                        const inputElement = document.getElementById("extraImageUrl") as HTMLInputElement | null;
-                        const imageUrl = inputElement?.value || '';
-                        addImage(imageUrl);
-                    }}>Add</button>
+                    <div>
+                        <input type="text" placeholder="Enter Extra Image URL" id="extraImageUrl" />
+                    </div>
+                    <br />
+                    <button
+                        className="btn"
+                        onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+                            e.preventDefault();
+                            const inputElement = document.getElementById("extraImageUrl") as HTMLInputElement | null;
+                            const imageUrl = inputElement?.value || '';
+                            addImage(imageUrl);
+                        }}>Add</button>
                 </div>
 
                 <button
-                    className="logout-btn"
+                    className="btn"
                     onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
                         e.preventDefault();
                         handleSubmit();
@@ -89,8 +108,9 @@ const CreateTemplate: React.FC = () => {
                 >
                     Create Template
                 </button>
-            </section>
-        </main>
+            </form>
+
+        </section>
     );
 };
 

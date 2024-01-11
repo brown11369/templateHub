@@ -1,10 +1,23 @@
 // hooks/useTemplateForm.tsx
 import { useState, ChangeEvent } from "react";
 import { Template } from "../utils/types";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/rootReducer";
+import useToast from "./useToast";
+import { useNavigate } from "react-router-dom";
+import { setAuthenticated } from "../store/authSlice";
+import useRefresh from "./useRefresh";
+import { apiUrl } from "../utils/constant";
 
 const useTemplateForm = () => {
+
+    const { handleToast } = useToast()
+
+    const navigate = useNavigate()
+
+    const dispatch = useDispatch()
+    const { handleRefresh } = useRefresh(apiUrl);
+
 
     const userInfo = useSelector(
         (state: RootState) => state.auth.userInfo
@@ -55,10 +68,10 @@ const useTemplateForm = () => {
         }
     };
 
-    const createTemplate = async (template: Template) => {
+    const createTemplate = async (apiUrl: string) => {
         console.log(template)
         try {
-            const data = await fetch("http://localhost:5000/template/create", {
+            const res = await fetch(apiUrl + "template/create", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -67,11 +80,25 @@ const useTemplateForm = () => {
                 body: JSON.stringify(template),
             });
 
-            const res = await data.json();
-            console.log(res);
-            return res; // You might want to return the response for further handling in components
+            if (res.ok) {
+                const data = await res.json();
+                console.log(res);
+                handleToast(true, data.message)
+            } else {
+                // Handle login failure (e.g., show an error message)
+                if (res.status === 401) {
+                    handleRefresh(createTemplate);
+
+                }
+            }
+
+
+
         } catch (error) {
             console.error("Error creating template:", error);
+            localStorage.clear()
+            dispatch(setAuthenticated({ isAuthenticated: false, userInfo: {} }))
+            navigate('/dashboard/login')
             throw error; // Rethrow the error for components to handle
         }
     };
@@ -79,7 +106,7 @@ const useTemplateForm = () => {
 
     const handleSubmit = async () => {
         try {
-            await createTemplate(template);
+            await createTemplate(apiUrl);
             // Handle success or redirect if needed
         } catch (error) {
             // Handle error

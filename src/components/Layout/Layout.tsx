@@ -4,10 +4,10 @@ import ToastMsg from "../ToastMsg/ToastMsg";
 
 const Layout = () => {
     return (
-        <div className="body">
+        <>
             <Outlet />
             <ToastMsg />
-        </div>
+        </>
     );
 };
 

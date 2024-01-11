@@ -1,27 +1,31 @@
+import { NavLink, Outlet } from "react-router-dom";
 import "./DashPage.css";
-import { apiUrl } from "../../utils/constant";
-import useLogout from "../../hooks/useLogout";
-import useUserInfo from "../../hooks/useUserInfo";
+
 
 const DashPage: React.FC = () => {
-    const { handleLogout } = useLogout(apiUrl);
 
-    const { loading, userInfo } = useUserInfo();
 
     return (
-        <div className="dashpage">
-            <h1>Welcome to Dashboard page</h1>
-            {loading ? <p>Loading...</p> : userInfo && <p>{userInfo.name}</p>}
+        <>
+            <main className="dashboard">
+                <nav>
+                    <ul className="links">
+                        <li>
+                            <NavLink to={'/'} end>Home</NavLink>
+                        </li>
+                        <li>
+                            <NavLink to={'/dashboard/'} end>profile</NavLink>
+                        </li>
+                        <li>
+                            <NavLink to={'/dashboard/template/create'} end>Add Template</NavLink>
+                        </li>
 
-            <button
-                className="logout-btn"
-                onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
-                    e.preventDefault();
-                    handleLogout();
-                }}>
-                Logout
-            </button>
-        </div>
+                    </ul>
+                </nav>
+                <Outlet />
+            </main>
+        </>
+
     );
 };
 

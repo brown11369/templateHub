@@ -9,6 +9,8 @@ import ProtectPrivate from "./components/ProtectPrivate/ProtectPrivate";
 import Login from "./pages/DashPage/Login/Login";
 import Register from "./pages/DashPage/Register/Register";
 import CreateTemplate from "./pages/DashPage/CreateTemplate/CreateTemplate";
+import TemplatePage from "./pages/ClientUI/TemplatePage/TemplatePage";
+import AdminProfile from "./pages/DashPage/AdminProfile/AdminProfile";
 
 const router = createBrowserRouter([
     {
@@ -22,6 +24,10 @@ const router = createBrowserRouter([
                         index: true,
                         element: <HomePage />,
                     },
+                    {
+                        path: "template/:slug",
+                        element: <TemplatePage />,
+                    },
                 ],
             },
             {
@@ -33,13 +39,19 @@ const router = createBrowserRouter([
                 ),
                 children: [
                     {
-                        index: true,
                         element: <Dashpage />,
+                        children: [
+                            {
+                                index: true,
+                                element: <AdminProfile />
+                            },
+                            {
+                                path: "template/create",
+                                element: <CreateTemplate />,
+                            },
+                        ]
                     },
-                    {
-                        path: "template/create",
-                        element: <CreateTemplate />,
-                    },
+
                 ],
             },
             {

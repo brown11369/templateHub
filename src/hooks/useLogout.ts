@@ -18,7 +18,7 @@ const useLogout = (apiUrl: string) => {
                 const data = await res.json();
                 navigate("/");
                 setTimeout(() => {
-                    dispatch(setAuthenticated(false));
+                    dispatch(setAuthenticated({isAuthenticated:false,userInfo:{}}));
                     localStorage.clear();
                 }, 2000);
                 handleToast(true, data.message);

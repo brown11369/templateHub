@@ -25,7 +25,7 @@ const useRefresh = (apiUrl: string) => {
                 res.statusText === "Unauthorized"
             ) {
                 console.log("pls login again");
-                dispatch(setAuthenticated(false));
+                dispatch(setAuthenticated({isAuthenticated:false,userInfo:{}}));
                 setTimeout(() => {
                     localStorage.clear();
                 }, 2000);
