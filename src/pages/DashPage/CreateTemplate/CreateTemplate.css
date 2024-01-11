@@ -1,0 +1,23 @@
+.createTemplate{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.createTemplate form {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.createTemplate form input,
+.createTemplate form textarea
+{
+    padding-block: 10px;
+    padding-inline: 20px;
+}
+
+.stacks-checkbox{
+    display: flex;
+    gap: 10px;
+}

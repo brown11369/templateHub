@@ -1,5 +1,6 @@
 // types.ts
 export interface Template {
+    _id?:string;
     user_id: string;
     template_name: string;
     main_image: string;

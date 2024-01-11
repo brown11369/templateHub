@@ -16,50 +16,54 @@ const Login = () => {
     if (isAuthenticated) return <Navigate to={"/dashboard"} />;
 
     return (
-        <form id="sign_in">
-            <h2>Sign in</h2>
-            {/* <!--Email and password input are contained here and within--> */}
-            <div className="inputbx">
-                <div className="email">
-                    <input
-                        id="email"
-                        type="email"
-                        autoComplete="true"
-                        required
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                    <label htmlFor="email">Enter email</label>
-                </div>
-                <div className="password">
-                    <input
-                        id="password"
-                        type="password"
-                        required
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                    <label htmlFor="password">Enter password</label>
-                </div>
-            </div>
+        <main className="auth">
 
-            {/* <!--Call to action container--> */}
-            <div className="btnbx">
-                <button
-                    type="submit"
-                    disabled={!email || !password}
-                    onClick={(e) => {
-                        e.preventDefault();
-                        handleLogin();
-                    }}>
-                    Sign in
-                </button>
+            <form id="sign_in">
+                <h2>Sign in</h2>
+                {/* <!--Email and password input are contained here and within--> */}
+                <div className="inputbx">
+                    <div className="email">
+                        <input
+                            id="email"
+                            type="email"
+                            autoComplete="true"
+                            required
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                        <label htmlFor="email">Enter email</label>
+                    </div>
+                    <div className="password">
+                        <input
+                            id="password"
+                            type="password"
+                            required
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                        <label htmlFor="password">Enter password</label>
+                    </div>
+                </div>
 
-                <p>
-                    Don't have an account,
-                    <Link to={"/dashboard/register"}>Register</Link>
-                    here
-                </p>
-            </div>
-        </form>
+                {/* <!--Call to action container--> */}
+                <div className="btnbx">
+                    <button
+                        type="submit"
+                        disabled={!email || !password}
+                        onClick={(e) => {
+                            e.preventDefault();
+                            handleLogin();
+                        }}>
+                        Sign in
+                    </button>
+
+                    <p>
+                        Don't have an account,
+                        <Link to={"/dashboard/register"}>Register</Link>
+                        here
+                    </p>
+                </div>
+            </form>
+        </main>
+
     );
 };
 
