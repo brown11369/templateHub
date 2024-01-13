@@ -1,5 +1,5 @@
-import { NavLink, Outlet } from "react-router-dom";
 import "./DashPage.css";
+import { NavLink, Outlet } from "react-router-dom";
 
 
 const DashPage: React.FC = () => {
@@ -14,7 +14,7 @@ const DashPage: React.FC = () => {
                             <NavLink to={'/'} end>Home</NavLink>
                         </li>
                         <li>
-                            <NavLink to={'/dashboard/'} end>profile</NavLink>
+                            <NavLink to={'/dashboard'} end>profile</NavLink>
                         </li>
                         <li>
                             <NavLink to={'/dashboard/template/create'} end>Add Template</NavLink>

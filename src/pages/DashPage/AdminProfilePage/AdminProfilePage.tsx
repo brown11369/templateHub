@@ -1,4 +1,4 @@
-import "./AdminProfile.css"
+import "./AdminProfilePage.css"
 
 import useLogout from "../../../hooks/useLogout";
 import useUserInfo from "../../../hooks/useUserInfo";

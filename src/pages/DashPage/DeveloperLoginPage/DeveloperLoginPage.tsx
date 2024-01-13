@@ -1,11 +1,11 @@
+import "./DeveloperLoginPage.css";
 import { Link, Navigate } from "react-router-dom";
-import "./Login.css";
 import useLogin from "../../../hooks/useLogin";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/rootReducer";
 import { apiUrl } from "../../../utils/constant";
 
-const Login = () => {
+const DeveloperLoginPage = () => {
     const { email, password, setEmail, setPassword, handleLogin } =
         useLogin(apiUrl);
 
@@ -67,4 +67,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default DeveloperLoginPage;

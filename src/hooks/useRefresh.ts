@@ -29,7 +29,7 @@ const useRefresh = (apiUrl: string) => {
                 setTimeout(() => {
                     localStorage.clear();
                 }, 2000);
-                navigate("/");
+                navigate("/dashboard/login");
             } else {
                 // Handle login failure (e.g., show an error message)
                 console.error("Login failed:", res.statusText);

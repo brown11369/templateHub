@@ -1,9 +1,9 @@
-import "./CreateTemplate.css"
+import "./CreateTemplatePage.css"
 
 import React from "react";
 import useTemplateForm from "../../../hooks/useTemplateCreate";
 
-const CreateTemplate: React.FC = () => {
+const CreateTemplatePage: React.FC = () => {
     const { template, handleInputChange, addImage, handleSubmit } = useTemplateForm();
 
     return (
@@ -114,4 +114,4 @@ const CreateTemplate: React.FC = () => {
     );
 };
 
-export default CreateTemplate;
+export default CreateTemplatePage;
