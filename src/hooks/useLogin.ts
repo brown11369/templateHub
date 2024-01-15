@@ -7,10 +7,13 @@ import useToast from "./useToast";
 const useLogin = (apiUrl: string) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [isTrusted, setIsTrusted] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { handleToast } = useToast();
 
+
+    
     const handleLogin = async () => {
         try {
             const res = await fetch(apiUrl + "login", {
@@ -26,6 +29,7 @@ const useLogin = (apiUrl: string) => {
                 const data = await res.json();
                 console.log(data);
                 const {userInfo}=data
+                isTrusted?localStorage.setItem("persist","true"):localStorage.setItem("persist","false");
                 dispatch(setAuthenticated({isAuthenticated:true,userInfo}));
                 handleToast(true, data.message);
                 navigate("/dashboard");
@@ -39,7 +43,7 @@ const useLogin = (apiUrl: string) => {
         }
     };
 
-    return { email, password, setEmail, setPassword, handleLogin };
+    return { email, password, setEmail, setPassword, handleLogin , setIsTrusted};
 };
 
 export default useLogin;

@@ -14,7 +14,6 @@ const useTemplate = (): UseTemplate => {
     try {
       const res = await fetch(apiUrl + "template/all", { credentials: "include" });
       const data: Template[] = await res.json();
-      console.log(data);
       setTemplates(data);
     } catch (error) {
       console.error(error);

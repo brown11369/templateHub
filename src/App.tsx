@@ -15,6 +15,7 @@ import LoginPage from "./pages/ClientUI/LoginPage/LoginPage";
 import ContactPage from "./pages/ClientUI/ContactPage/ContactPage";
 import AboutPage from "./pages/ClientUI/AboutPage/AboutPage";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
+import PersistLogin from "./components/Persist/Persist";
 
 const router = createBrowserRouter([
     {
@@ -50,9 +51,11 @@ const router = createBrowserRouter([
             {
                 path: "dashboard",
                 element: (
-                    <ProtectPrivate>
-                        <DashLayout />
-                    </ProtectPrivate>
+                    <PersistLogin>
+                        <ProtectPrivate>
+                            <DashLayout />
+                        </ProtectPrivate>
+                    </PersistLogin>
                 ),
                 children: [
                     {

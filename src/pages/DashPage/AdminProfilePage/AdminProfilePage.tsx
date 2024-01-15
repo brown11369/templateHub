@@ -2,11 +2,10 @@ import "./AdminProfilePage.css"
 
 import useLogout from "../../../hooks/useLogout";
 import useUserInfo from "../../../hooks/useUserInfo";
-import { apiUrl } from "../../../utils/constant";
 
 
 const AdminProfile = () => {
-    const { handleLogout } = useLogout(apiUrl);
+    const { handleLogout } = useLogout();
     const { loading, userInfo } = useUserInfo();
 
     return (

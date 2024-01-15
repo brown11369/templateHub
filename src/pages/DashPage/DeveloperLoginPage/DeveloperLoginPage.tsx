@@ -4,16 +4,21 @@ import useLogin from "../../../hooks/useLogin";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/rootReducer";
 import { apiUrl } from "../../../utils/constant";
+import usePersist from "../../../hooks/usePersist";
+
 
 const DeveloperLoginPage = () => {
-    const { email, password, setEmail, setPassword, handleLogin } =
+    const { email, password, setEmail, setPassword, handleLogin, setIsTrusted } =
         useLogin(apiUrl);
 
     const isAuthenticated = useSelector(
         (state: RootState) => state.auth.isAuthenticated
     );
 
-    if (isAuthenticated) return <Navigate to={"/dashboard"} />;
+    const [persist] = usePersist()
+
+
+    if (persist || isAuthenticated) return <Navigate to={"/dashboard"} />;
 
     return (
         <main className="auth">
@@ -60,6 +65,13 @@ const DeveloperLoginPage = () => {
                         <Link to={"/dashboard/register"}>Register</Link>
                         here
                     </p>
+                    <div>
+                        <input type="checkbox" name="" id="" onChange={(e) => { setIsTrusted(e.target.checked) }} />
+                        &nbsp;
+                        <span>
+                            trust this device
+                        </span>
+                    </div>
                 </div>
             </form>
         </main>

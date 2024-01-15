@@ -1,14 +1,16 @@
-import { useNavigate } from "react-router-dom";
 import { setAuthenticated } from "../store/authSlice";
 import { useDispatch } from "react-redux";
+import { apiUrl } from "../utils/constant";
+import { useNavigate } from "react-router-dom";
+import useToast from "./useToast";
 
-const useRefresh = (apiUrl: string) => {
-    const navigate = useNavigate();
+const useRefresh = () => {
     const dispatch = useDispatch();
+    const navigate =useNavigate()
+    const { handleToast } = useToast();
 
-    const handleRefresh = async (
-        retryFunc: (apiUrl: string) => Promise<void>
-    ) => {
+
+    const handleRefresh = async (  ) => {
         try {
             const res = await fetch(apiUrl + "refresh-token", {
                 method: "POST",
@@ -17,19 +19,15 @@ const useRefresh = (apiUrl: string) => {
 
             if (res.ok) {
                 const data = await res.json();
+                const {userInfo}=data
                 console.log(data);
-
-                retryFunc(apiUrl);
-            } else if (
-                res.status === 401 &&
-                res.statusText === "Unauthorized"
-            ) {
+                dispatch(setAuthenticated({isAuthenticated:true,userInfo}));
+            } else if (res.status === 401 &&res.statusText === "Unauthorized") {
                 console.log("pls login again");
-                dispatch(setAuthenticated({isAuthenticated:false,userInfo:{}}));
-                setTimeout(() => {
-                    localStorage.clear();
-                }, 2000);
-                navigate("/dashboard/login");
+                localStorage.clear()
+                dispatch(setAuthenticated({isAuthenticated:false,userInfo:{}}))
+                navigate('/dashboard/login')
+                handleToast(true,"Timeout plz login again")
             } else {
                 // Handle login failure (e.g., show an error message)
                 console.error("Login failed:", res.statusText);

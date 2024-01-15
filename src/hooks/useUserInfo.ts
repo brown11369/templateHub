@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import useRefresh from "./useRefresh";
 import { apiUrl } from "../utils/constant";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setAuthenticated } from "../store/authSlice";
+import useRefresh from "./useRefresh";
+import usePersist from "./usePersist";
 
 interface UserInfo {
     name: string;
@@ -13,10 +14,14 @@ interface UserInfo {
 const useUserInfo = () => {
 
     const navigate = useNavigate()
-    const { handleRefresh } = useRefresh(apiUrl);
     const dispatch = useDispatch()
 
-    const handleGetUserInfo = async (apiUrl: string) => {
+    const { handleRefresh } = useRefresh()
+    const [persist] = usePersist()
+
+
+
+    const handleGetUserInfo = async () => {
         try {
             const res = await fetch(apiUrl + "user", {
                 headers: {
@@ -25,15 +30,20 @@ const useUserInfo = () => {
                 credentials: "include",
             });
 
-            console.log(res);
 
             if (res.ok) {
                 const data = await res.json();
                 setUserInfo(data.userInfo);
-            } else {
-                // Handle login failure (e.g., show an error message)
-                if (res.status === 401) {
-                    handleRefresh(handleGetUserInfo);
+            } else if(res.status === 401) {
+                const data = await res.json()
+                if(data.message==="Refresh token is missing"){
+                    console.log("invalid credentials",data)
+                    if(!persist) return handleRefresh()
+                    handleRefresh()
+                }
+                if(data.message==="Access token is missing"){
+                    handleRefresh()
+                    handleGetUserInfo()
                 }
             }
         } catch (error) {
@@ -48,7 +58,7 @@ const useUserInfo = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        handleGetUserInfo(apiUrl).finally(() => setLoading(false));
+        handleGetUserInfo().finally(() => setLoading(false));
     }, []);
 
     return { userInfo, loading };
