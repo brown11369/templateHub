@@ -16,7 +16,7 @@ const useTemplateForm = () => {
     const navigate = useNavigate()
 
     const dispatch = useDispatch()
-    const { handleRefresh } = useRefresh(apiUrl);
+    const { handleRefresh } = useRefresh();
 
 
     const userInfo = useSelector(
@@ -68,7 +68,7 @@ const useTemplateForm = () => {
         }
     };
 
-    const createTemplate = async (apiUrl: string) => {
+    const createTemplate = async () => {
         console.log(template)
         try {
             const res = await fetch(apiUrl + "template/create", {
@@ -87,8 +87,8 @@ const useTemplateForm = () => {
             } else {
                 // Handle login failure (e.g., show an error message)
                 if (res.status === 401) {
-                    handleRefresh(createTemplate);
-
+                    handleRefresh();
+                    createTemplate()
                 }
             }
 
@@ -106,7 +106,7 @@ const useTemplateForm = () => {
 
     const handleSubmit = async () => {
         try {
-            await createTemplate(apiUrl);
+            await createTemplate();
             // Handle success or redirect if needed
         } catch (error) {
             // Handle error
