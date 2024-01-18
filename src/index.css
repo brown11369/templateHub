@@ -23,11 +23,7 @@ a{
 }
 
 a.active{
-<<<<<<< HEAD
     color: rgb(95, 226, 43);
-=======
-    background-color: var(--fmbrd);
->>>>>>> f682256 (hello)
 }
 
 main{

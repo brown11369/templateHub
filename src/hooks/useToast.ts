@@ -9,7 +9,6 @@ interface ToastParams {
 const useToast = () => {
     const dispatch = useDispatch();
 
-<<<<<<< HEAD
     const handleToast = async (isVisible: boolean, message: string): Promise<boolean> => {
         try {
             const toastParams: ToastParams = {
@@ -30,18 +29,6 @@ const useToast = () => {
             console.error("Error handling toast:", error);
             return false;
         }
-=======
-    const handleToast = (val: boolean, msg: string): void => {
-        const toastParams: ToastParams = {
-            isVisible: val,
-            message: msg,
-        };
-
-        dispatch(setToast(toastParams));
-        setTimeout(() => {
-            dispatch(resetToast());
-        }, 5000);
->>>>>>> f682256 (hello)
     };
 
     return { handleToast };

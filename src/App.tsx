@@ -3,7 +3,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
 import ClientUI from "./pages/ClientUI/ClientUI";
 import HomePage from "./pages/ClientUI/HomePage/HomePage";
-<<<<<<< HEAD
 import DashLayout from "./components/dashboard/DashLayout/DashLayout";
 import Dashpage from "./pages/DashPage/DashPage";
 import ProtectPrivate from "./components/ProtectPrivate/ProtectPrivate";
@@ -20,25 +19,12 @@ import ManageTemplatesPage from "./pages/DashPage/ManageTemplatesPage/ManageTemp
 import TemplateViewPage from "./pages/DashPage/TemplateViewPage/TemplateViewPage";
 import TemplateEditPage from "./pages/DashPage/TemplateEditPage/TemplateEditPage";
 import TemplateListsPage from "./pages/DashPage/TemplateListsPage/TemplateListsPage";
-=======
-import DashLayout from "./components/DashLayout/DashLayout";
-import Dashpage from "./pages/DashPage/DashPage";
-import ProtectPrivate from "./components/ProtectPrivate/ProtectPrivate";
-import Login from "./pages/DashPage/Login/Login";
-import Register from "./pages/DashPage/Register/Register";
-import CreateTemplate from "./pages/DashPage/CreateTemplate/CreateTemplate";
-import TemplatePage from "./pages/ClientUI/TemplatePage/TemplatePage";
-import AdminProfile from "./pages/DashPage/AdminProfile/AdminProfile";
->>>>>>> f682256 (hello)
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <Layout />,
-<<<<<<< HEAD
         errorElement: < ErrorPage />,
-=======
->>>>>>> f682256 (hello)
         children: [
             {
                 element: <ClientUI />,
@@ -51,7 +37,6 @@ const router = createBrowserRouter([
                         path: "template/:slug",
                         element: <TemplatePage />,
                     },
-<<<<<<< HEAD
                     {
                         path: "about",
                         element: <AboutPage />,
@@ -64,8 +49,6 @@ const router = createBrowserRouter([
                         path: "login",
                         element: <LoginPage />,
                     },
-=======
->>>>>>> f682256 (hello)
                 ],
             },
             {
@@ -81,7 +64,6 @@ const router = createBrowserRouter([
                         children: [
                             {
                                 index: true,
-<<<<<<< HEAD
                                 element: <AdminProfilePage />
                             },
                             {
@@ -105,13 +87,6 @@ const router = createBrowserRouter([
                                         element: <TemplateEditPage />
                                     },
                                 ]
-=======
-                                element: <AdminProfile />
-                            },
-                            {
-                                path: "template/create",
-                                element: <CreateTemplate />,
->>>>>>> f682256 (hello)
                             },
                         ]
                     },
@@ -120,19 +95,11 @@ const router = createBrowserRouter([
             },
             {
                 path: "dashboard/login",
-<<<<<<< HEAD
                 element: <DeveloperLoginPage />,
             },
             {
                 path: "dashboard/register",
                 element: <DeveloperRegisterPage />,
-=======
-                element: <Login />,
-            },
-            {
-                path: "dashboard/register",
-                element: <Register />,
->>>>>>> f682256 (hello)
             },
         ],
     },
