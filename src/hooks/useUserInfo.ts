@@ -1,46 +1,82 @@
 import { useEffect, useState } from "react";
-import useRefresh from "./useRefresh";
-import { apiUrl } from "../utils/constant";
+import { USER_URL } from "../utils/constant";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setAuthenticated } from "../store/authSlice";
+import { RootState } from "../store/rootReducer";
+import useRefresh from "./useRefresh";
+import usePersist from "./usePersist";
+import useToast from "./useToast";
 
 interface UserInfo {
-    name: string;
-    // Add other properties as needed
+    _id?: string;
+    name?: string;
+    email?:string;
 }
 
 const useUserInfo = () => {
 
+    const auth = useSelector(
+            (state: RootState) => state.auth
+        );
+
     const navigate = useNavigate()
-    const { handleRefresh } = useRefresh(apiUrl);
     const dispatch = useDispatch()
 
-    const handleGetUserInfo = async (apiUrl: string) => {
-        try {
-            const res = await fetch(apiUrl + "user", {
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                credentials: "include",
-            });
+    const { handleRefresh } = useRefresh()
+    const [persist] = usePersist()
 
-            console.log(res);
+    const {handleToast}= useToast();
 
-            if (res.ok) {
-                const data = await res.json();
-                setUserInfo(data.userInfo);
-            } else {
-                // Handle login failure (e.g., show an error message)
-                if (res.status === 401) {
-                    handleRefresh(handleGetUserInfo);
+
+
+    const handleGetUserInfo = async () => {
+        if(!auth.isAuthenticated){
+
+            try {
+                const res = await fetch(USER_URL, {
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    credentials: "include",
+                });
+    
+    
+                if (res.ok) {
+                    const data = await res.json();
+                    const userInfo = data.userInfo;
+                    setUserInfo(userInfo);
+                    if(persist){
+                        dispatch(setAuthenticated({isAuthenticated:true,userInfo}))
+                    }else{
+                        dispatch(setAuthenticated({isAuthenticated:false,userInfo}))
+                    }
+                } 
+                else if(res.status === 401) {
+                    const data = await res.json()
+                    if(data.message==="Refresh token is missing"){
+                        localStorage.clear()
+                        navigate("/dashboard/login")
+                        handleToast(true,"Please login again")
+                    }
+                    if(data.message==="Access token is missing"){
+                        let success = await handleRefresh()
+                        if(success){
+                          handleGetUserInfo()
+                        }
+                    }
                 }
+
+
+            } catch (error) {
+                console.error("Error during getUserInfo:", error);
+                localStorage.clear()
+                dispatch(setAuthenticated({isAuthenticated:false,userInfo:{}}))
+                navigate('/dashboard/login')
             }
-        } catch (error) {
-            console.error("Error during getUserInfo:", error);
-            localStorage.clear()
-            dispatch(setAuthenticated({isAuthenticated:false,userInfo:{}}))
-           navigate('/dashboard/login')
+        }else{
+
+            setUserInfo(auth?.userInfo)
         }
     };
 
@@ -48,7 +84,7 @@ const useUserInfo = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        handleGetUserInfo(apiUrl).finally(() => setLoading(false));
+        handleGetUserInfo().finally(() => setLoading(false));
     }, []);
 
     return { userInfo, loading };

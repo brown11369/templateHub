@@ -1,19 +1,22 @@
+import "./DeveloperLoginPage.css";
 import { Link, Navigate } from "react-router-dom";
-import "./Login.css";
 import useLogin from "../../../hooks/useLogin";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/rootReducer";
-import { apiUrl } from "../../../utils/constant";
+import usePersist from "../../../hooks/usePersist";
 
-const Login = () => {
-    const { email, password, setEmail, setPassword, handleLogin } =
-        useLogin(apiUrl);
+
+const DeveloperLoginPage = () => {
+    const { email, password, setEmail, setPassword, handleLogin, setIsTrusted } = useLogin();
 
     const isAuthenticated = useSelector(
         (state: RootState) => state.auth.isAuthenticated
     );
 
-    if (isAuthenticated) return <Navigate to={"/dashboard"} />;
+    const [persist] = usePersist()
+
+
+    if (persist || isAuthenticated) return <Navigate to={"/dashboard"} />;
 
     return (
         <main className="auth">
@@ -60,6 +63,13 @@ const Login = () => {
                         <Link to={"/dashboard/register"}>Register</Link>
                         here
                     </p>
+                    <div>
+                        <input type="checkbox" name="checkbox" id="" onChange={(e) => { setIsTrusted(e.target.checked) }} />
+                        &nbsp;
+                        <span>
+                            trust this device
+                        </span>
+                    </div>
                 </div>
             </form>
         </main>
@@ -67,4 +77,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default DeveloperLoginPage;

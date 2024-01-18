@@ -23,7 +23,7 @@ a{
 }
 
 a.active{
-    background-color: var(--fmbrd);
+    color: rgb(95, 226, 43);
 }
 
 main{

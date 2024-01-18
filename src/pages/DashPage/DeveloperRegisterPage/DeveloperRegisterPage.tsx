@@ -1,10 +1,10 @@
-import "./Register.css";
+import "./DeveloperRegisterPage.css";
 import { useSelector } from "react-redux";
 import { Link, Navigate } from "react-router-dom";
 import { RootState } from "../../../store/rootReducer";
 import useRegister from "../../../hooks/useRegister";
 
-const Register = () => {
+const DeveloperRegisterPage = () => {
     const isAuthenticated = useSelector(
         (state: RootState) => state.auth.isAuthenticated
     );
@@ -92,4 +92,4 @@ const Register = () => {
     );
 };
 
-export default Register;
+export default DeveloperRegisterPage;

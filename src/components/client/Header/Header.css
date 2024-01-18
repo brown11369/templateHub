@@ -1,15 +1,24 @@
 header {
-    background-color: rgb(218, 203, 203);
+    background-color: slategray;
     padding: 20px;
     display: flex;
+    align-items: center;
     text-transform: capitalize;
+    position: sticky;
+    top: 0;
+}
+
+header nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 header > * {
     flex: 1;
 }
 
-ul {
+header ul {
     list-style: none;
     display: flex;
     gap: 10px;
@@ -19,6 +28,3 @@ header a {
     color: black;
 }
 
-a:hover {
-    color: gray !important;
-}
