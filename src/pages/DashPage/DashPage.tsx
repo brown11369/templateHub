@@ -19,6 +19,9 @@ const DashPage: React.FC = () => {
                         <li>
                             <NavLink to={'/dashboard/template/create'} end>Add Template</NavLink>
                         </li>
+                        <li>
+                            <NavLink to={'/dashboard/templates/manage'} end>Manage Templates</NavLink>
+                        </li>
 
                     </ul>
                 </nav>

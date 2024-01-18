@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { apiUrl } from "../utils/constant";
+import { GET_TEMPLATE_URL } from "../utils/constant";
 import { Template } from "../utils/types";
 
 interface UseTemplate {
@@ -12,7 +12,7 @@ const useTemplate = (): UseTemplate => {
 
   const getTemplates = async (): Promise<void> => {
     try {
-      const res = await fetch(apiUrl + "template/all", { credentials: "include" });
+      const res = await fetch(GET_TEMPLATE_URL, { credentials: "include" });
       const data: Template[] = await res.json();
       setTemplates(data);
     } catch (error) {

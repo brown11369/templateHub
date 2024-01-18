@@ -9,7 +9,13 @@ const ProtectPrivate: React.FC<{ children: ReactNode }> = ({ children }) => {
         (state: RootState) => state.auth.isAuthenticated
     );
     const [persist] = usePersist()
-    return persist ? children : isAuthenticated ? children : <Navigate to="/dashboard/login" />;
+
+    if (!persist && !isAuthenticated) return <Navigate to="/dashboard/login" />
+
+    if (!persist && isAuthenticated) return children
+
+    if (persist || isAuthenticated) return children
+
 };
 
 export default ProtectPrivate;

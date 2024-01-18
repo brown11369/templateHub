@@ -10,6 +10,7 @@
     flex: 1;
     background-color: var(--bg_1);
     color: white;
+    z-index: 3;
 }
 
 

@@ -1,14 +1,15 @@
 import "./CreateTemplatePage.css"
 
-import React from "react";
+import React, { useRef } from "react";
 import useTemplateForm from "../../../hooks/useTemplateCreate";
 
 const CreateTemplatePage: React.FC = () => {
+    const handleForm = useRef<HTMLFormElement>(null)
     const { template, handleInputChange, addImage, handleSubmit } = useTemplateForm();
 
     return (
         <section className="createTemplate">
-            <form>
+            <form ref={handleForm}>
                 <input
                     type="text"
                     placeholder="Enter Template Name"
@@ -86,7 +87,7 @@ const CreateTemplatePage: React.FC = () => {
 
                 <div>
                     <div>
-                        <input type="text" placeholder="Enter Extra Image URL" id="extraImageUrl" />
+                        <input type="text" name="extraImg" placeholder="Enter Extra Image URL" id="extraImageUrl" />
                     </div>
                     <br />
                     <button
@@ -101,9 +102,12 @@ const CreateTemplatePage: React.FC = () => {
 
                 <button
                     className="btn"
-                    onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+                    onClick={async (e: React.MouseEvent<HTMLButtonElement>) => {
                         e.preventDefault();
-                        handleSubmit();
+                        let success = await handleSubmit();
+                        if (success) {
+                            handleForm.current?.reset()
+                        }
                     }}
                 >
                     Create Template

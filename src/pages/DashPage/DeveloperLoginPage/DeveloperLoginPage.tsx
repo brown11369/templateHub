@@ -3,13 +3,11 @@ import { Link, Navigate } from "react-router-dom";
 import useLogin from "../../../hooks/useLogin";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/rootReducer";
-import { apiUrl } from "../../../utils/constant";
 import usePersist from "../../../hooks/usePersist";
 
 
 const DeveloperLoginPage = () => {
-    const { email, password, setEmail, setPassword, handleLogin, setIsTrusted } =
-        useLogin(apiUrl);
+    const { email, password, setEmail, setPassword, handleLogin, setIsTrusted } = useLogin();
 
     const isAuthenticated = useSelector(
         (state: RootState) => state.auth.isAuthenticated
@@ -66,7 +64,7 @@ const DeveloperLoginPage = () => {
                         here
                     </p>
                     <div>
-                        <input type="checkbox" name="" id="" onChange={(e) => { setIsTrusted(e.target.checked) }} />
+                        <input type="checkbox" name="checkbox" id="" onChange={(e) => { setIsTrusted(e.target.checked) }} />
                         &nbsp;
                         <span>
                             trust this device

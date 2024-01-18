@@ -3,7 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
 import ClientUI from "./pages/ClientUI/ClientUI";
 import HomePage from "./pages/ClientUI/HomePage/HomePage";
-import DashLayout from "./components/DashLayout/DashLayout";
+import DashLayout from "./components/dashboard/DashLayout/DashLayout";
 import Dashpage from "./pages/DashPage/DashPage";
 import ProtectPrivate from "./components/ProtectPrivate/ProtectPrivate";
 import DeveloperLoginPage from "./pages/DashPage/DeveloperLoginPage/DeveloperLoginPage";
@@ -15,7 +15,10 @@ import LoginPage from "./pages/ClientUI/LoginPage/LoginPage";
 import ContactPage from "./pages/ClientUI/ContactPage/ContactPage";
 import AboutPage from "./pages/ClientUI/AboutPage/AboutPage";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
-import PersistLogin from "./components/Persist/Persist";
+import ManageTemplatesPage from "./pages/DashPage/ManageTemplatesPage/ManageTemplatesPage";
+import TemplateViewPage from "./pages/DashPage/TemplateViewPage/TemplateViewPage";
+import TemplateEditPage from "./pages/DashPage/TemplateEditPage/TemplateEditPage";
+import TemplateListsPage from "./pages/DashPage/TemplateListsPage/TemplateListsPage";
 
 const router = createBrowserRouter([
     {
@@ -51,11 +54,9 @@ const router = createBrowserRouter([
             {
                 path: "dashboard",
                 element: (
-                    <PersistLogin>
-                        <ProtectPrivate>
-                            <DashLayout />
-                        </ProtectPrivate>
-                    </PersistLogin>
+                    <ProtectPrivate>
+                        <DashLayout />
+                    </ProtectPrivate>
                 ),
                 children: [
                     {
@@ -68,6 +69,24 @@ const router = createBrowserRouter([
                             {
                                 path: "template/create",
                                 element: <CreateTemplatePage />,
+                            },
+                            {
+                                path: "templates/manage",
+                                element: <ManageTemplatesPage />,
+                                children: [
+                                    {
+                                        index: true,
+                                        element: <TemplateListsPage />
+                                    },
+                                    {
+                                        path: '/dashboard/templates/manage/:slug/view',
+                                        element: <TemplateViewPage />
+                                    },
+                                    {
+                                        path: '/dashboard/templates/manage/:slug/edit',
+                                        element: <TemplateEditPage />
+                                    },
+                                ]
                             },
                         ]
                     },

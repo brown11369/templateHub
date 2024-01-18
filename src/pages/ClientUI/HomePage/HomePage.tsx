@@ -1,7 +1,7 @@
 import React from "react";
 import useTemplate from "../../../hooks/useTemplate";
 import { Template } from "../../../utils/types";
-import TemplateCard from "../../../components/TemplateCard/TemplateCard";
+import TemplateCard from "../../../components/client/TemplateCard/TemplateCard";
 
 import "./HomePage.css"
 

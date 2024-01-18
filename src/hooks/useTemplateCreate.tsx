@@ -4,16 +4,14 @@ import { Template } from "../utils/types";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/rootReducer";
 import useToast from "./useToast";
-import { useNavigate } from "react-router-dom";
 import { setAuthenticated } from "../store/authSlice";
 import useRefresh from "./useRefresh";
-import { apiUrl } from "../utils/constant";
+import { CREATE_TEMPLATE_URL } from "../utils/constant";
 
 const useTemplateForm = () => {
 
     const { handleToast } = useToast()
 
-    const navigate = useNavigate()
 
     const dispatch = useDispatch()
     const { handleRefresh } = useRefresh();
@@ -68,48 +66,53 @@ const useTemplateForm = () => {
         }
     };
 
-    const createTemplate = async () => {
+    const createTemplate = async (): Promise<boolean> => {
         console.log(template)
         try {
-            const res = await fetch(apiUrl + "template/create", {
+            const res = await fetch(CREATE_TEMPLATE_URL, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                credentials: "include",
                 body: JSON.stringify(template),
+                credentials: "include",
             });
 
             if (res.ok) {
                 const data = await res.json();
-                console.log(res);
-                handleToast(true, data.message)
+                handleToast(true, data.message);
+                return true
             } else {
-                // Handle login failure (e.g., show an error message)
                 if (res.status === 401) {
-                    handleRefresh();
-                    createTemplate()
+                    let success = await handleRefresh();
+                    if (success) {
+                        return createTemplate()
+                    } else {
+                        console.error("refresh-token failed")
+                        return false
+                    }
                 }
             }
-
-
+            return true
 
         } catch (error) {
             console.error("Error creating template:", error);
             localStorage.clear()
             dispatch(setAuthenticated({ isAuthenticated: false, userInfo: {} }))
-            navigate('/dashboard/login')
-            throw error; // Rethrow the error for components to handle
+            return false
         }
     };
 
 
     const handleSubmit = async () => {
         try {
-            await createTemplate();
-            // Handle success or redirect if needed
+            let success = await createTemplate();
+            if (success) {
+                return true
+            }
         } catch (error) {
-            // Handle error
+            console.error(error)
+            return false
         }
     };
 

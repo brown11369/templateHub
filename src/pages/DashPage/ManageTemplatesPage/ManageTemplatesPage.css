@@ -1,0 +1,40 @@
+.manage-templates{
+    display: flex;
+}
+
+.view-template {
+    flex: 1;
+    border-right: 2px dashed gray;
+    padding: 20px;
+}
+
+
+.manage-templates main{
+    flex: 3;
+    width: 100%;
+    padding: 20px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.template-lists-area{
+    background-color: rgb(67, 109, 117);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;    
+}
+
+.template-lists-area ul {
+    list-style: none;
+}
+
+.template-modal{
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    background-color: red;
+    display: grid;
+}
