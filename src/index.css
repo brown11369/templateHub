@@ -12,11 +12,6 @@
     --fmbrd: rgba(200, 200, 200, 0.5);
 }
 
-body {
-    min-height: 100svh;
-    align-items: center;
-}
-
 a{
     text-decoration: none;
     color: inherit;

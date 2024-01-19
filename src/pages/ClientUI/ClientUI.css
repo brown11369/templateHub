@@ -1,6 +1,10 @@
 .client-body {
-    width: 100%;
+    width: 100dvw;
     background-color: rgb(54, 52, 52);
     min-height: 100vh;
     color: white;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    
 }

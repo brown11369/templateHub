@@ -1,5 +1,13 @@
+main{
+    display: grid;
+    
+}
 .templates{
-    padding: 40px;
-    display: flex;
-    gap: 20px;
+    width: 100%;
+    padding: 2rem 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    justify-content: center;
+    /* align-items: center; */
+    gap: 2rem;
 }

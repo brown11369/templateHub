@@ -11,6 +11,7 @@ import Register from "./pages/DashPage/Register/Register";
 import CreateTemplate from "./pages/DashPage/CreateTemplate/CreateTemplate";
 import TemplatePage from "./pages/ClientUI/TemplatePage/TemplatePage";
 import AdminProfile from "./pages/DashPage/AdminProfile/AdminProfile";
+import './App.css'
 
 const router = createBrowserRouter([
     {
