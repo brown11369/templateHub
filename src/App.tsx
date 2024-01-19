@@ -10,10 +10,10 @@ import DeveloperLoginPage from "./pages/DashPage/DeveloperLoginPage/DeveloperLog
 import DeveloperRegisterPage from "./pages/DashPage/DeveloperRegisterPage/DeveloperRegisterPage";
 import CreateTemplatePage from "./pages/DashPage/CreateTemplatePage/CreateTemplatePage";
 import TemplatePage from "./pages/ClientUI/TemplatePage/TemplatePage";
-<<<<<<< HEAD
+// <<<<<<< HEAD
 import AdminProfile from "./pages/DashPage/AdminProfile/AdminProfile";
 import './App.css'
-=======
+// =======
 import AdminProfilePage from "./pages/DashPage/AdminProfilePage/AdminProfilePage";
 import LoginPage from "./pages/ClientUI/LoginPage/LoginPage";
 import ContactPage from "./pages/ClientUI/ContactPage/ContactPage";
@@ -23,7 +23,7 @@ import ManageTemplatesPage from "./pages/DashPage/ManageTemplatesPage/ManageTemp
 import TemplateViewPage from "./pages/DashPage/TemplateViewPage/TemplateViewPage";
 import TemplateEditPage from "./pages/DashPage/TemplateEditPage/TemplateEditPage";
 import TemplateListsPage from "./pages/DashPage/TemplateListsPage/TemplateListsPage";
->>>>>>> 00e5226098fb61276c40126ccf103110538c6145
+
 
 const router = createBrowserRouter([
     {
