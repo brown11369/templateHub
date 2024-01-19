@@ -9,20 +9,36 @@
     --loginbg_hover: rgba(32, 208, 132, 0.559);
 }
 header {
-    background-color: rgb(218, 203, 203);
+    background-color: slategray;
     padding: 20px;
     display: flex;
+<<<<<<< HEAD:src/components/Header/Header.css
     justify-content: space-between;
     align-items: end;
+=======
+    align-items: center;
+>>>>>>> 00e5226098fb61276c40126ccf103110538c6145:src/components/client/Header/Header.css
     text-transform: capitalize;
+    position: sticky;
+    top: 0;
+}
+
+header nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 header > * {
     /* flex: 1; */
 }
 
+<<<<<<< HEAD:src/components/Header/Header.css
 ul {
     font-weight: 550;
+=======
+header ul {
+>>>>>>> 00e5226098fb61276c40126ccf103110538c6145:src/components/client/Header/Header.css
     list-style: none;
     display: flex;
     align-items: center;
@@ -43,6 +59,7 @@ header a {
     color: black;
 }
 
+<<<<<<< HEAD:src/components/Header/Header.css
 a:hover {
     color: gray;
 }
@@ -55,3 +72,5 @@ a:hover {
         gap: 3rem;
     }
 }
+=======
+>>>>>>> 00e5226098fb61276c40126ccf103110538c6145:src/components/client/Header/Header.css

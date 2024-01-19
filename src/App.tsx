@@ -3,20 +3,33 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
 import ClientUI from "./pages/ClientUI/ClientUI";
 import HomePage from "./pages/ClientUI/HomePage/HomePage";
-import DashLayout from "./components/DashLayout/DashLayout";
+import DashLayout from "./components/dashboard/DashLayout/DashLayout";
 import Dashpage from "./pages/DashPage/DashPage";
 import ProtectPrivate from "./components/ProtectPrivate/ProtectPrivate";
-import Login from "./pages/DashPage/Login/Login";
-import Register from "./pages/DashPage/Register/Register";
-import CreateTemplate from "./pages/DashPage/CreateTemplate/CreateTemplate";
+import DeveloperLoginPage from "./pages/DashPage/DeveloperLoginPage/DeveloperLoginPage";
+import DeveloperRegisterPage from "./pages/DashPage/DeveloperRegisterPage/DeveloperRegisterPage";
+import CreateTemplatePage from "./pages/DashPage/CreateTemplatePage/CreateTemplatePage";
 import TemplatePage from "./pages/ClientUI/TemplatePage/TemplatePage";
+<<<<<<< HEAD
 import AdminProfile from "./pages/DashPage/AdminProfile/AdminProfile";
 import './App.css'
+=======
+import AdminProfilePage from "./pages/DashPage/AdminProfilePage/AdminProfilePage";
+import LoginPage from "./pages/ClientUI/LoginPage/LoginPage";
+import ContactPage from "./pages/ClientUI/ContactPage/ContactPage";
+import AboutPage from "./pages/ClientUI/AboutPage/AboutPage";
+import ErrorPage from "./pages/ErrorPage/ErrorPage";
+import ManageTemplatesPage from "./pages/DashPage/ManageTemplatesPage/ManageTemplatesPage";
+import TemplateViewPage from "./pages/DashPage/TemplateViewPage/TemplateViewPage";
+import TemplateEditPage from "./pages/DashPage/TemplateEditPage/TemplateEditPage";
+import TemplateListsPage from "./pages/DashPage/TemplateListsPage/TemplateListsPage";
+>>>>>>> 00e5226098fb61276c40126ccf103110538c6145
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <Layout />,
+        errorElement: < ErrorPage />,
         children: [
             {
                 element: <ClientUI />,
@@ -28,6 +41,18 @@ const router = createBrowserRouter([
                     {
                         path: "template/:slug",
                         element: <TemplatePage />,
+                    },
+                    {
+                        path: "about",
+                        element: <AboutPage />,
+                    },
+                    {
+                        path: "contact",
+                        element: <ContactPage />,
+                    },
+                    {
+                        path: "login",
+                        element: <LoginPage />,
                     },
                 ],
             },
@@ -44,11 +69,29 @@ const router = createBrowserRouter([
                         children: [
                             {
                                 index: true,
-                                element: <AdminProfile />
+                                element: <AdminProfilePage />
                             },
                             {
                                 path: "template/create",
-                                element: <CreateTemplate />,
+                                element: <CreateTemplatePage />,
+                            },
+                            {
+                                path: "templates/manage",
+                                element: <ManageTemplatesPage />,
+                                children: [
+                                    {
+                                        index: true,
+                                        element: <TemplateListsPage />
+                                    },
+                                    {
+                                        path: '/dashboard/templates/manage/:slug/view',
+                                        element: <TemplateViewPage />
+                                    },
+                                    {
+                                        path: '/dashboard/templates/manage/:slug/edit',
+                                        element: <TemplateEditPage />
+                                    },
+                                ]
                             },
                         ]
                     },
@@ -57,11 +100,11 @@ const router = createBrowserRouter([
             },
             {
                 path: "dashboard/login",
-                element: <Login />,
+                element: <DeveloperLoginPage />,
             },
             {
                 path: "dashboard/register",
-                element: <Register />,
+                element: <DeveloperRegisterPage />,
             },
         ],
     },

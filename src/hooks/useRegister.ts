@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useToast from "./useToast";
-import { apiUrl } from "../utils/constant";
+import { REGISTER_URL } from "../utils/constant";
 
 const useRegister = () => {
     const [name, setName] = useState("");
@@ -14,7 +14,7 @@ const useRegister = () => {
 
     const handleRegister = async () => {
         try {
-            const res = await fetch(apiUrl + "register", {
+            const res = await fetch(REGISTER_URL, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -25,16 +25,15 @@ const useRegister = () => {
 
             if (res.ok) {
                 const data = await res.json();
-                console.log(data);
                 handleToast(true, data.message);
                 navigate("/dashboard/login");
             } else {
-                handleToast(true, "User Exists...!");
                 console.error("User Exists...!:", res.statusText);
+                handleToast(true, "User Exists...!:");
             }
         } catch (error) {
-            handleToast(true, "Error during login");
             console.error("Error during login:", error);
+            handleToast(true, "Error during login");
         }
     };
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { Template } from "../../utils/types";
+import { Template } from "../../../utils/types";
 import { Link } from "react-router-dom";
 import './TemplateCard.css';
 
