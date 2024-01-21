@@ -1,0 +1,36 @@
+.dashboard {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+}
+
+.dashboard>nav{
+    flex: 0.7;
+    z-index: 3;
+}
+
+.dashboard>nav .links{
+    display: flex;
+    flex-direction: column;
+    text-transform: uppercase;
+}
+
+.dashboard>nav .links li {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.dashboard>nav .links li a{
+    width: 100%;
+    font-size: 15px;
+    padding: 10px;
+    text-transform: capitalize;
+}
+
+
+.dashboard>section{
+    flex: 5;
+}
+
+

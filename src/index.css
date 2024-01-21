@@ -1,0 +1,93 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+    --bg_1: rgb(20, 20, 20);
+    --bg_2: #000000;
+    --txt_1: #ffffff;
+    --txt_2: #333333;
+    --fmbrd: rgba(200, 200, 200, 0.5);
+
+    --dsh-b-sch1:#1D2327;
+    --dsh-mb-sch1:#2C3338;
+    --dsh-m-sch1:#2271B1;
+    --dsh-s-sch1:#72AEE6;
+    
+    --dsh-b-sch2:#B43C38;
+    --dsh-mb-sch2:#CF4944;
+    --dsh-m-sch2:#DD823B;
+    --dsh-s-sch2:#CCAF0B;
+}
+.clr-schm1{
+    background: var(--dsh-b-sch1);
+    color: #fff;
+}
+.nav-schm1{
+    background-color: var(--dsh-mb-sch1);
+    color: #c3c4c7;
+}
+
+.clr-schm2{
+    background: var(--dsh-b-sch2);
+    color: #ffffff;
+}
+.nav-schm2{
+    background-color: var(--dsh-mb-sch2);
+    color: #c3c4c7;
+}
+.clr-schm2 .active{
+    background-color: var(--dsh-m-sch2);
+}
+
+body {
+    min-height: 100svh;
+    align-items: center;
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+main{
+    min-height: 100vh;
+    display: flex;
+}
+
+
+.auth{
+    min-height: 100vh;
+    background-color: var(--bg_1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn {
+    background-color: #5555fe;
+    color: var(--txt_1);
+    padding: 10px 20px;
+    border: none;
+    height: 2.5em;
+    font-size: 1em;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    text-transform: capitalize;
+    border-radius: 8px;
+}
+
+/* @media (prefers-color-scheme: light) {
+    :root {
+        color: #213547;
+    }
+    a:hover {
+        color: #747bff;
+    }
+    button {
+        background-color: #f9f9f9;
+    }
+}  */
