@@ -15,10 +15,10 @@ const DialogBox: React.FC<DialogBoxProps> = ({ setIsDialogOpen }) => {
             }}
         >
             <div className="box" onClick={(e) => e.stopPropagation()}>
-                <h2>Select One To Proceed</h2>
+                <h2>How do you want to use our services?</h2>
                 <div className="option">
-                    <Link to="/login" onClick={() => { setIsDialogOpen(false) }}>user</Link>
-                    <Link to="/dashboard/login">developer</Link>
+                    <Link to="/login" onClick={() => { setIsDialogOpen(false) }}>As User</Link>
+                    <Link to="/dashboard/login">As Developer</Link>
                 </div>
             </div>
         </div>

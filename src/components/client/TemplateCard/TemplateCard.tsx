@@ -10,7 +10,9 @@ interface TemplateCardProps {
 const TemplateCard: React.FC<TemplateCardProps> = ({ template }) => {
     return (
         <Link className="main_card"  to={`/template/${template?.template_name}`} state={{ template }}>
+            
             <div className="card_imgbx">
+            <div className="overlay"></div>
                 <img className="card_img"  src={template?.main_image} alt="" />
             </div>
             <div className="card_description">

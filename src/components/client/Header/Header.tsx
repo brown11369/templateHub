@@ -18,7 +18,7 @@ const Header = () => {
                     <NavLink to={"/contact"}>contact</NavLink>
                 </ul>
                 <button
-                    className="btn"
+                    className="header_btn"
                     onClick={() => { setIsDialogOpen(!isDialogOpen) }}
                 >login</button>
                 {isDialogOpen && <DialogBox setIsDialogOpen={setIsDialogOpen} />}

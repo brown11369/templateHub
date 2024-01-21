@@ -5,72 +5,73 @@
     font-family: sans-serif;
 }
 :root{
-    --loginbg: rgb(32, 208, 132);
-    --loginbg_hover: rgba(32, 208, 132, 0.559);
+    --contactbg: rgb(32, 208, 132);
+    --contactbg_hover: rgba(32, 208, 132, 0.559);
+    --loginbg: #5555fe;
+    --loginbg_hover: #3f3fc0;
 }
 header {
+    width: 100%;
     background-color: slategray;
-    padding: 20px;
+    padding: 20px 2rem;
     display: flex;
-<<<<<<< HEAD:src/components/Header/Header.css
-    justify-content: space-between;
-    align-items: end;
-=======
     align-items: center;
->>>>>>> 00e5226098fb61276c40126ccf103110538c6145:src/components/client/Header/Header.css
+    justify-content: space-between;
     text-transform: capitalize;
     position: sticky;
     top: 0;
 }
 
 header nav{
+    
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 1rem;
 }
 
-header > * {
-    /* flex: 1; */
-}
-
-<<<<<<< HEAD:src/components/Header/Header.css
-ul {
-    font-weight: 550;
-=======
-header ul {
->>>>>>> 00e5226098fb61276c40126ccf103110538c6145:src/components/client/Header/Header.css
+header nav ul {
     list-style: none;
     display: flex;
     align-items: center;
     gap: 1rem;
 }
 header nav ul a:last-child{
-    background-color: var(--loginbg);
+    background-color: transparent;
     padding: .5rem 2rem;
+    border: 2px solid var(--contactbg);
     border-radius: 5px;
-    transition: .2s;
+    transition: .3s;
     color: white;
 }
 header nav ul a:last-child:hover{
-    background-color: var(--loginbg_hover);
+    background-color: var(--contactbg_hover);
     color: gray;
+}
+header nav .header_btn{
+    background-color: var(--loginbg);
+    color: var(--txt_1);
+    padding: .5rem 2rem;
+    border: 2px solid var(--loginbg);
+    font-size: 1em;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    text-transform: capitalize;
+    border-radius: 5px;
+    transition: .3s;
+}
+header nav .header_btn:hover{
+    background-color: var(--loginbg_hover);
 }
 header a {
     color: black;
+    font-weight: 550;
 }
 
-<<<<<<< HEAD:src/components/Header/Header.css
-a:hover {
-    color: gray;
-}
-@media only screen and (min-width:768px){
-    header{
-        padding: 1rem 4rem;
-    }
-    ul {
+@media only screen and (min-width: 768px){
+    header {
+        padding: 20px 5rem;
        
-        gap: 3rem;
     }
 }
-=======
->>>>>>> 00e5226098fb61276c40126ccf103110538c6145:src/components/client/Header/Header.css
+

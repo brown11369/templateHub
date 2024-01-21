@@ -7,29 +7,38 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.479);
-    z-index: -1;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 100;
+    /* isolation: isolate; */
 }
 
 .login-dialog .box{
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    background-color: blue;
-    padding: 20px;
+    align-items: center;
+    gap: 2rem;
+    background-color: transparent;
+    padding: 2rem;
+    backdrop-filter: blur(25px);
+    border: 2px solid rgb(84, 84, 97);
 }
-
 .login-dialog .box .option{
     display: flex;
     justify-content: space-between;
+    width: 80%;
 }
 
 .login-dialog .box .option a {
-    width: 100px;
+    width: 120px;
     aspect-ratio: 1/1;
-    background-color: red;
+    background-color: rgb(20, 112, 152);
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 50%;
+    transition: .3s;
+}
+.login-dialog .box .option a:hover{
+    background-color: rgb(32, 162, 218);
+    box-shadow: 0 1px 6px rgb(84, 84, 84);
 }
